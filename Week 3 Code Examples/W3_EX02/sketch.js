@@ -28,6 +28,7 @@ let punchSounds = [];
 let winSound;
 let bgMusic;
 
+
 // ------------------------------------------------------------
 // FIGHTER CLASS
 // Extended from Example 1 to include health, attacking,
@@ -250,6 +251,8 @@ class Fighter {
 let fighter1, fighter2;
 let groundY;
 let startBg;
+let yaySound, bMusic, jumpSound;
+
 
 // ============================================================
 // preload()
@@ -267,7 +270,7 @@ function preload() {
   startBg = loadImage("assets/images/bluewall.jpg");
   yaySound = loadSound("assets/sounds/yay.mp3");
   winSound = loadSound("assets/sounds/win.wav");
-  bMusic = loadSound("assets/sounds/background.mp3");
+  bMusic = loadSound("assets/sounds/backgroundmusic.mp3");
   jumpSound = loadSound("assets/sounds/jump.mp3");
 }
 
