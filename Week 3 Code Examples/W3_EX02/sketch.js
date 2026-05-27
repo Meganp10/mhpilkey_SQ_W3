@@ -377,36 +377,46 @@ function endGame(winnerLabel) {
 // Displayed before the game begins.
 // ------------------------------------------------------------
 function drawStartScreen() {
-  // Blue wall background image
+  // Background image
   image(startBg, 0, 0, width, height);
 
-  // Dark overlay for readability
-  fill(0, 0, 0, 80);
+  // Dark overlay
+  fill(10, 5, 30, 120);
   rect(0, 0, width, height);
 
-  // Title
-  fill(255);
   textAlign(CENTER);
-  textSize(52);
-  text("BLOB BRAWL", width / 2, height / 2 - 60);
 
-  // Subtitle
-  fill(220);
+  // Title glow
+  drawingContext.shadowBlur = 25;
+  drawingContext.shadowColor = "rgba(200, 170, 255, 0.9)";
+
+  // Main title (white)
+  fill(255);
+  textSize(54);
+  text("BLOB BRAWL", width / 2, height / 2 - 65);
+
+  // Subtitle (light lavender)
+  drawingContext.shadowBlur = 15;
+  fill(220, 200, 255);
   textSize(18);
   text("First to land 3 hits wins", width / 2, height / 2 - 20);
 
-  // Controls
+  // Controls (soft purple)
+  fill(210, 180, 255);
   textSize(14);
-  fill(0, 255, 220);
   text("P1: A/D move   F attack   G block", width / 2, height / 2 + 30);
 
-  fill(255, 180, 60);
+  fill(235, 220, 255);
   text("P2: Arrows move   K attack   L block", width / 2, height / 2 + 55);
 
-  // Start prompt
-  fill(255);
-  textSize(16);
-  text("Press ENTER to start", width / 2, height / 2 + 110);
+  // Start prompt (bright glowing white-purple)
+  drawingContext.shadowBlur = 20;
+  fill(245, 235, 255);
+  textSize(18);
+  text("Press ENTER to start", width / 2, height / 2 + 115);
+
+  // Reset glow so it doesn't affect other screens
+  drawingContext.shadowBlur = 0;
 }
 
 // ------------------------------------------------------------
