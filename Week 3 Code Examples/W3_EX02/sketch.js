@@ -269,7 +269,6 @@ function preload() {
   bgMusic  = loadSound("assets/sounds/background.mp3");
   startBg = loadImage("assets/images/bluewall.jpg");
   yaySound = loadSound("assets/sounds/yay.mp3");
-  winSound = loadSound("assets/sounds/win.wav");
   bMusic = loadSound("assets/sounds/backgroundmusic.mp3");
   jumpSound = loadSound("assets/sounds/jump.mp3");
 }
@@ -364,8 +363,8 @@ function startGame() {
 function endGame(winnerLabel) {
   gameState = STATE_WIN;
   winner = winnerLabel;
-  bgMusic.stop();
-  winSound.play();
+  bMusic.stop();
+  yaySound.play();
 }
 
 // ============================================================
