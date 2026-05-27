@@ -252,6 +252,7 @@ let fighter1, fighter2;
 let groundY;
 let startBg;
 let yaySound, bMusic, jumpSound;
+let winStars = [];
 
 
 // ============================================================
@@ -363,6 +364,7 @@ function startGame() {
 function endGame(winnerLabel) {
   gameState = STATE_WIN;
   winner = winnerLabel;
+  createWinStars();
   bMusic.stop();
   yaySound.play();
 }
@@ -423,21 +425,67 @@ function drawStartScreen() {
 // Displayed after a fighter's health reaches zero.
 // A semi-transparent overlay sits on top of the arena.
 // ------------------------------------------------------------
+
+function createWinStars() {
+  winStars = [];
+
+  for (let i = 0; i < 120; i++) {
+    winStars.push({
+      x: random(width),
+      y: random(height),
+      size: random(2, 7),
+      glow: random(8, 22),
+      pulse: random(TWO_PI),
+      colour: random([
+        color(180, 120, 255), // purple
+        color(220, 180, 255), // lavender
+        color(255, 160, 255), // pink-purple
+        color(200, 140, 255)  // violet
+      ])
+    });
+  }
+}
+
 function drawWinScreen() {
-  // Semi-transparent overlay
-  fill(0, 0, 0, 160);
+  // Dark purple overlay
+  fill(10, 0, 30, 220);
   rect(0, 0, width, height);
 
-  // Winner text — shown in the winner's colour
-  fill(winner === "P1" ? color(0, 200, 180) : color(255, 150, 30));
+  // Animated glowing stars
+  noStroke();
+
+  for (let star of winStars) {
+    let pulseSize = star.size + sin(frameCount * 0.08 + star.pulse) * 2;
+
+    drawingContext.shadowBlur = star.glow;
+    drawingContext.shadowColor = star.colour.toString();
+
+    fill(star.colour);
+    ellipse(star.x, star.y, pulseSize, pulseSize);
+
+    // sparkle cross
+    stroke(star.colour);
+    line(star.x - pulseSize * 2, star.y, star.x + pulseSize * 2, star.y);
+    line(star.x, star.y - pulseSize * 2, star.x, star.y + pulseSize * 2);
+    noStroke();
+  }
+
+  drawingContext.shadowBlur = 25;
+  drawingContext.shadowColor = "rgba(220,180,255,0.9)";
+
+  // Winner text
+  fill(255);
   textAlign(CENTER);
   textSize(56);
   text(winner + " WINS!", width / 2, height / 2 - 30);
 
   // Rematch prompt
-  fill(255);
+  drawingContext.shadowBlur = 15;
+  fill(230, 210, 255);
   textSize(18);
   text("Press ENTER to rematch", width / 2, height / 2 + 40);
+
+  drawingContext.shadowBlur = 0;
 }
 
 // ------------------------------------------------------------
