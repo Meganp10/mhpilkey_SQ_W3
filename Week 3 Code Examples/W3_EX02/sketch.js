@@ -250,6 +250,9 @@ class Fighter {
 let fighter1, fighter2;
 let groundY;
 let startBg;
+let jumpSound;
+let yaySound;
+let sparkleSound;
 
 // ============================================================
 // preload()
@@ -265,6 +268,9 @@ function preload() {
   winSound = loadSound("assets/sounds/win.wav");
   bgMusic  = loadSound("assets/sounds/background.mp3");
   startBg = loadImage("assets/images/bluewall.jpg");
+  jumpSound = loadSound("assets/sounds/jump.wav");
+  yaySound = loadSound("assets/sounds/yay.wav");
+  sparkleSound = loadSound("assets/sounds/sparkle.wav");
 }
 
 // ============================================================
@@ -357,7 +363,7 @@ function endGame(winnerLabel) {
   gameState = STATE_WIN;
   winner = winnerLabel;
   bgMusic.stop();
-  winSound.play();
+  yaySound.play();
 }
 
 // ============================================================
