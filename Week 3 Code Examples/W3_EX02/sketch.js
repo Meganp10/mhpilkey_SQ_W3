@@ -1,5 +1,5 @@
 // ============================================================
-// Week 3 Example 2: Full Fighting Game
+// Side Quest 3
 // ============================================================
 
 // ------------------------------------------------------------
@@ -16,6 +16,7 @@ const STATE_WIN   = "win";
 
 let gameState = STATE_START;
 let winner = null; // stores "P1" or "P2" when the game ends
+
 
 // ------------------------------------------------------------
 // SOUNDS
@@ -248,6 +249,7 @@ class Fighter {
 // ============================================================
 let fighter1, fighter2;
 let groundY;
+let startBg;
 
 // ============================================================
 // preload()
@@ -262,6 +264,7 @@ function preload() {
   }
   winSound = loadSound("assets/sounds/win.wav");
   bgMusic  = loadSound("assets/sounds/background.mp3");
+  startBg = loadImage("assets/images/bluewall.jpg");
 }
 
 // ============================================================
@@ -366,6 +369,13 @@ function endGame(winnerLabel) {
 // Displayed before the game begins.
 // ------------------------------------------------------------
 function drawStartScreen() {
+  // Blue wall background image
+  image(startBg, 0, 0, width, height);
+
+  // Dark overlay for readability
+  fill(0, 0, 0, 80);
+  rect(0, 0, width, height);
+
   // Title
   fill(255);
   textAlign(CENTER);
@@ -373,15 +383,16 @@ function drawStartScreen() {
   text("BLOB BRAWL", width / 2, height / 2 - 60);
 
   // Subtitle
-  fill(160);
+  fill(220);
   textSize(18);
   text("First to land 3 hits wins", width / 2, height / 2 - 20);
 
-  // Controls — each player shown in their colour
+  // Controls
   textSize(14);
-  fill(0, 200, 180);
+  fill(0, 255, 220);
   text("P1: A/D move   F attack   G block", width / 2, height / 2 + 30);
-  fill(255, 150, 30);
+
+  fill(255, 180, 60);
   text("P2: Arrows move   K attack   L block", width / 2, height / 2 + 55);
 
   // Start prompt
