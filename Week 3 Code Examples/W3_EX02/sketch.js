@@ -265,7 +265,12 @@ function preload() {
   winSound = loadSound("assets/sounds/win.wav");
   bgMusic  = loadSound("assets/sounds/background.mp3");
   startBg = loadImage("assets/images/bluewall.jpg");
+  yaySound = loadSound("assets/sounds/yay.mp3");
+  winSound = loadSound("assets/sounds/win.wav");
+  bMusic = loadSound("assets/sounds/background.mp3");
+  jumpSound = loadSound("assets/sounds/jump.mp3");
 }
+
 
 // ============================================================
 // setup()
@@ -344,7 +349,7 @@ function startGame() {
   winner = null;
   setupFighters();
   if (!bgMusic.isPlaying()) {
-    bgMusic.loop();
+    bMusic.loop();
   }
 }
 
